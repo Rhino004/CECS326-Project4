@@ -10,7 +10,31 @@
 #include "list.h"
 #include "cpu.h"
 
+void schedule() {
+    while (head != NULL) {
+        struct node *current = head;
 
-/*
- * Your code and design here:
- */
+        // Iterates task list
+        while (current != NULL) {
+            Task *task = current -> task;
+
+            // Runs task for smaller time, either time quantum or remaining burst time
+            int runTime = (task -> burst > TIME_QUANTUM) ? TIME_QUANTUM : task -> burst;
+            run(task, runTime);
+
+            // Updates remaining burst time
+            task -> burst -= runTime;
+
+            // Checks task is completed
+            if (task->burst <= 0) {
+                // Removes completed task 
+                struct node *nextNode = current -> next;
+                delete(&head, task);
+                current = nextNode;
+            } else {
+                // Cycles to next task list
+                current = current -> next;
+            }
+        }
+    }
+}
