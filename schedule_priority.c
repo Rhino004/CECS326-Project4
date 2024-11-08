@@ -32,7 +32,7 @@ Task *pickNextTask() {
 
 void schedule() {
   while (head != NULL) {
-    Task *task = pickNextTask(head);
+    Task *task = pickNextTask();
 
     // Complete task 
     run(task, task -> burst);
