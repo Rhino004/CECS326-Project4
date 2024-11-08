@@ -14,7 +14,7 @@
         struct node *current = head;
         struct node *highestPriorityNode = NULL;
 
-        // Find the task with the highest priority
+        // Find task with highest priority
         while (current != NULL) {
             if (highestPriorityNode == NULL || current -> task -> lpriority > highestPriorityNode -> task->priority) {
                 highestPriorityNode = current;
@@ -25,10 +25,10 @@
         if (highestPriorityNode != NULL) {
             Task *task = highestPriorityNode -> task;
 
-            // Run the selected task
+            // Run selected task
             run(task, task -> burst);
 
-            // Remove the completed task from the list
+            // Remove completed task
             delete(&head, task);
         }
     }
