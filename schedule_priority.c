@@ -9,15 +9,27 @@
 #include "list.h"
 #include "cpu.h"
 
- void schedule() {
+ void schedule(struct node *head) {
     while (head != NULL) {
-        // Picks task with highest priority
-        Task *task = pickNextTask();
+        struct node *current = head;
+        struct node *highestPriorityNode = NULL;
 
-        // Runs task full burst time
-        run(task, task -> burst);
+        // Find task with highest priority
+        while (current != NULL) {
+            if (highestPriorityNode == NULL || current -> task -> lpriority > highestPriorityNode -> task->priority) {
+                highestPriorityNode = current;
+            }
+            current = current -> next;
+        }
 
-        // Removes completed task
-        delete(&head, task);
+        if (highestPriorityNode != NULL) {
+            Task *task = highestPriorityNode -> task;
+
+            // Run selected task
+            run(task, task -> burst);
+
+            // Remove completed task
+            delete(&head, task);
+        }
     }
 }
