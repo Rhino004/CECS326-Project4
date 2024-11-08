@@ -16,7 +16,7 @@
 
         // Find task with highest priority
         while (current != NULL) {
-            if (highestPriorityNode == NULL || current -> task -> lpriority > highestPriorityNode -> task->priority) {
+            if (highestPriorityNode == NULL || current -> task -> priority > highestPriorityNode -> task->priority) {
                 highestPriorityNode = current;
             }
             current = current -> next;
