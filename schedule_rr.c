@@ -10,7 +10,9 @@
 #include "list.h"
 #include "cpu.h"
 
-void schedule() {
+#define TIME_QUANTUM 5
+
+void schedule(struct node *head) {
     while (head != NULL) {
         struct node *current = head;
 
