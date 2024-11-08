@@ -10,11 +10,11 @@ CC=gcc
 CFLAGS=-Wall
 
 clean:
-	rm -rf *.o
-	rm -rf fcfs
-	rm -rf sjf
-	rm -rf rr
-	rm -rf priority
+	del -rf *.o
+	del -rf fcfs
+	del -rf sjf
+	del -rf rr
+	del -rf priority
 
 
 rr: driver.o list.o CPU.o schedule_rr.o
