@@ -10,8 +10,8 @@
 #include "cpu.h"
 #include "schedulers.h"
 
-
-Task *pickNextTask() {
+Task *pickNextTask(struct node *head)
+{
   struct node *current = head;
   Task *highestPriorityTask = NULL;
 
@@ -30,7 +30,7 @@ Task *pickNextTask() {
 
 void schedule(struct node *head) {
   while (head != NULL) {
-    Task *task = pickNextTask();
+    Task *task = pickNextTask(head);
 
     // Complete task 
     run(task, task -> burst);
