@@ -10,6 +10,7 @@
 #include "cpu.h"
 #include "schedulers.h"
 
+struct node *head = NULL;
 
 Task *pickNextTask() {
   struct node *current = head;
@@ -28,7 +29,7 @@ Task *pickNextTask() {
   return highestPriorityTask;
 }
 
-void schedule(struct node *head) {
+void schedule() {
   while (head != NULL) {
     Task *task = pickNextTask();
 
