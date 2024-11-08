@@ -10,12 +10,13 @@
 #include "cpu.h"
 #include "schedulers.h"
 
-Task *pickNextTask(struct node *head)
-{
+struct node *head = NULL;
+
+Task *pickNextTask() {
   struct node *current = head;
   Task *highestPriorityTask = NULL;
 
-  // Find the task with the highest priority
+  // Find task with highest priority
   while (current != NULL) {
     Task *task = current->task;
     if (highestPriorityTask == NULL || task -> priority > highestPriorityTask -> priority) {
@@ -28,7 +29,7 @@ Task *pickNextTask(struct node *head)
   return highestPriorityTask;
 }
 
-void schedule(struct node *head) {
+void schedule() {
   while (head != NULL) {
     Task *task = pickNextTask(head);
 
