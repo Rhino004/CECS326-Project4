@@ -29,18 +29,12 @@ void add(char *name, int priority, int burst)
     new_node->task = new_task;
     new_node->next = NULL;
 
-    if (head == NULL)
-    {
-        head = new_node;
-    }
+    if (head == NULL) { head = new_node; }
     else
     {
         struct node *current = head;
-        while (current->next != NULL)
-        {
-            current = current->next;
-        }
-        current->next = new_node;
+        while (current->next != NULL) { current = current->next; }
+        current -> next = new_node;
     }
 }
 
