@@ -4,12 +4,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stddef.h>
-#include "schedulers.h"
 #include "task.h"
 #include "list.h"
 #include "cpu.h"
 #include "schedulers.h"
 
+struct node *head = NULL;
 Task *pickNextTask(struct node *head)
 {
   struct node *current = head;
@@ -28,7 +28,7 @@ Task *pickNextTask(struct node *head)
   return highestPriorityTask;
 }
 
-void schedule(struct node *head) {
+void schedule() {
   while (head != NULL) {
     Task *task = pickNextTask(head);
 
@@ -39,8 +39,6 @@ void schedule(struct node *head) {
     delete(&head, task);
   }
 }
-
-struct node *head = NULL;
 
 void add(char *name, int priority, int burst)
 {

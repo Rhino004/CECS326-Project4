@@ -13,7 +13,9 @@
 
 #define TIME_QUANTUM 5
 
-void schedule(struct node *head) {
+struct node *head = NULL;
+
+void schedule() {
     while (head != NULL) {
         struct node *current = head;
 
@@ -41,8 +43,6 @@ void schedule(struct node *head) {
         }
     }
 }
-
-struct node *head = NULL;
 
 void add(char *name, int priority, int burst)
 {

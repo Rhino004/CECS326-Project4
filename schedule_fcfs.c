@@ -49,7 +49,7 @@ void add(char *name, int priority, int burst)
     }
 }
 
-void schedule(struct node *head)
+void schedule()
 {
     // Pointer holds current task node in list
     struct node *current = head;
