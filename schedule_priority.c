@@ -8,30 +8,36 @@
 #include "task.h"
 #include "list.h"
 #include "cpu.h"
+#include "schedulers.h"
 
- void schedule(struct node *head) {
-    while (head != NULL) {
-        struct node *current = head;
-        struct node *highestPriorityNode = NULL;
+Task *pickNextTask(struct node *head)
+{
+  struct node *current = head;
+  Task *highestPriorityTask = NULL;
 
-        // Find task with highest priority
-        while (current != NULL) {
-            if (highestPriorityNode == NULL || current -> task -> priority > highestPriorityNode -> task->priority) {
-                highestPriorityNode = current;
-            }
-            current = current -> next;
-        }
-
-        if (highestPriorityNode != NULL) {
-            Task *task = highestPriorityNode -> task;
-
-            // Run selected task
-            run(task, task -> burst);
-
-            // Remove completed task
-            delete(&head, task);
-        }
+  // Find the task with the highest priority
+  while (current != NULL) {
+    Task *task = current->task;
+    if (highestPriorityTask == NULL || task -> priority > highestPriorityTask -> priority) {
+        highestPriorityTask = task;
     }
+    
+    current = current -> next;
+  }
+  
+  return highestPriorityTask;
+}
+
+void schedule(struct node *head) {
+  while (head != NULL) {
+    Task *task = pickNextTask(head);
+
+    // Complete task 
+    run(task, task -> burst);
+
+    // Remove task from list
+    delete(&head, task);
+  }
 }
 
 struct node *head = NULL;

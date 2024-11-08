@@ -8,6 +8,7 @@
 #include "task.h"
 #include "list.h"
 #include "cpu.h"
+#include "schedulers.h"
 
 struct node *head = NULL;
 

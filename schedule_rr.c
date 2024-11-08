@@ -9,6 +9,7 @@
 #include "task.h"
 #include "list.h"
 #include "cpu.h"
+#include "schedulers.h"
 
 #define TIME_QUANTUM 5
 
