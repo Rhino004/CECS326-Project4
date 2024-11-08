@@ -10,7 +10,9 @@
 #include "cpu.h"
 #include "schedulers.h"
 
-void schedule(struct node *head)
+struct node *head = NULL;
+
+void schedule()
 {
     // Pointer holds current task node in list
     struct node *current = head;
