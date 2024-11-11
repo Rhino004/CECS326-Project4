@@ -12,8 +12,6 @@
 #include "cpu.h"
 #include "schedulers.h"
 
-#define TIME_QUANTUM 5
-
 struct node *head = NULL;
 
 void schedule() {
@@ -25,7 +23,7 @@ void schedule() {
             Task *task = current -> task;
 
             // Runs task for smaller time, either time quantum or remaining burst time
-            int runTime = (task -> burst > TIME_QUANTUM) ? TIME_QUANTUM : task -> burst;
+            int runTime = (task -> burst > QUANTUM) ? QUANTUM : task -> burst;
             run(task, runTime);
 
             // Updates remaining burst time
