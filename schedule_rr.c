@@ -32,7 +32,7 @@ void schedule() {
             task -> burst -= runTime;
 
             // Checks task is completed
-            if (task->burst <= 0) {
+            if (task -> burst <= 0) {
                 // Removes completed task 
                 struct node *nextNode = current -> next;
                 delete(&head, task);
@@ -45,37 +45,29 @@ void schedule() {
     }
 }
 
-void add(char *name, int priority, int burst)
-{
+void add(char *name, int priority, int burst) {
     Task *new_task = malloc(sizeof(Task));
-    if (new_task == NULL)
-    {
-        return;
-    }
-    new_task->name = strdup(name);
-    new_task->priority = priority;
-    new_task->burst = burst;
+    
+    if (new_task == NULL) { return; }
+    
+    new_task -> name = strdup(name);
+    new_task -> priority = priority;
+    new_task -> burst = burst;
 
     struct node *new_node = malloc(sizeof(struct node));
-    if (new_node == NULL)
-    {
+
+    if (new_node == NULL) {
         free(new_task);
         return;
     }
-    new_node->task = new_task;
-    new_node->next = NULL;
 
-    if (head == NULL)
-    {
-        head = new_node;
-    }
-    else
-    {
+    new_node -> task = new_task;
+    new_node -> next = NULL;
+
+    if (head == NULL) { head = new_node; }
+    else {
         struct node *current = head;
-        while (current->next != NULL)
-        {
-            current = current->next;
-        }
-        current->next = new_node;
+        while (current -> next != NULL) { current = current -> next; }
+        current -> next = new_node;
     }
 }
